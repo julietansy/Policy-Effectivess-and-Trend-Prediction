@@ -1496,4 +1496,32 @@ The prediction was made using the SARIMA(6, 1, 2)(9, 1, 2,)7, the outcome requir
 
 ![__results___71_0](https://github.com/julietansy/Policy-Effectivess-and-Trend-Prediction/assets/151416878/b82a657a-b449-4fc6-8899-ff9f741dba58)
 
+        # Rename the 'value' column to 'Count of Issues'
+        result = result.rename(columns={'value': 'Count of Issues'})
+        
+        # Calculate the percentage change between the current and previous month's values
+        result['% Change'] = result['Count of Issues'].pct_change() * 100
+        
+        # Round the 'Count of Issues' column to whole number
+        result['Count of Issues'] = result['Count of Issues'].astype(int)
+        
+        # Round the '% Change' column to 2 decimal places
+        result['% Change'] = result['% Change'].round(2)
+        
+        # Select rows where the index is between '2021-05-31' and '2021-07-31' (inclusive)
+        result_selected = result.loc[(result.index >= '2021-04-30') & (result.index <= '2021-07-31')]
+        print(result_selected)
 
+
+![image](https://github.com/julietansy/Policy-Effectivess-and-Trend-Prediction/assets/151416878/8876d273-de5c-4580-af8b-7ec95f210712)
+
+
+## Conclusion
+
+The Defects Logging and Detection Policy had resulted in notable improvements in the aspect of number of issues and the processing time taken to resolve them. The policy implementation had successfully reduced the monthly issues by 31.44%, from 3,442 to 2,618 issues.
+
+On top of that, there had been a positive impact on the resolution time spent on each issue. The reduction of resolution time was reduced by 37.10% in processing days. This is a substantial improvement in efficiency to the team as the average resolution time has decreased from 33.46 days to 24.4 days.
+
+Although the policy implementation was proven to be effective, the number of issues for the upcoming months will continue to flucatuate as issues are also determined by the amount of projects happening concurrently. From a resouce planning perspective, the current projection will result in a futher reduction of 11.42% in May, followed by a moderate increase of 4.47% and a slight rise of 2.72% in June and July, respectively.
+
+With SmartLoan continuous improvement on the process, there will be significant impact on the efficieny and productivity, resulting in positive impact to the customers. It is recommended that the policy be regularly reviewed and updated to ensure further improvement in the issues logged and issue resolution time.
